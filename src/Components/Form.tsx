@@ -1,6 +1,7 @@
 import { defaulThemes } from '../styledComponent/defaultTheme'
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import { GitBranch } from '@phosphor-icons/react'
+import { Card } from './Card'
 import axios from 'axios'
 import {
   StyledButton,
@@ -16,7 +17,6 @@ export function Form() {
   //   const [github, setGithub] = useState({})
   function handleInputClick(event: ChangeEvent<HTMLInputElement>) {
     setInput(event.target.value)
-    console.log('deu certo')
   }
 
   function handleForm(event: FormEvent<HTMLFormElement>) {
@@ -25,11 +25,19 @@ export function Form() {
   }
 
   useEffect(() => {
-    axios
-      .get(`https://api.github.com/users/${user}`)
-      .then((response) => setGithub(response.data))
-    console.log(gitHub)
+    try {
+      axios
+        .get(`https://api.github.com/users/${user}`)
+        .then((response) => setGithub([response.data]))
+        .catch((e) => {
+          console.log(e)
+        })
+    } catch (e) {
+      console.log(e)
+    }
   }, [user])
+
+  console.log(gitHub)
 
   return (
     <>
@@ -44,11 +52,23 @@ export function Form() {
               placeholder="Insert your user name"
               onChange={handleInputClick}
             />
-            <StyledButton>Buscar</StyledButton>
+            <StyledButton type="submit">Buscar</StyledButton>
           </StyledDivInputButton>
         </StyledDiv>
       </form>
-      <div>{}</div>
+      <div>
+        {gitHub.map((hub) => {
+          return (
+            <Card
+              img={hub.avatar_url}
+              name={hub.name}
+              location={hub.location}
+              login={hub.login}
+              bio={hub.bio}
+            />
+          )
+        })}
+      </div>
     </>
   )
 }

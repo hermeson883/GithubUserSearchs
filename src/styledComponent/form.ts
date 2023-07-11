@@ -5,7 +5,7 @@ export const StyledDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 3rem;
   gap: 2rem;
 `
 export const StyledInput = styled.input`
@@ -21,6 +21,7 @@ export const StyledButton = styled.button`
   border: none;
   background-color: ${(props) => props.theme.gray};
   transition: 0.5s;
+
   &:hover {
     color: ${(props) => props.theme.teal};
     background: ${(props) => props.theme.black};
