@@ -9,11 +9,6 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
 
-    :focus{
-        outline: none;
-        border: 1px solid 
-    }
-
     body, input, label, button{
         font-family: 'Roboto',sans-serif;
         font-weight: 400;

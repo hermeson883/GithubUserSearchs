@@ -11,9 +11,9 @@ import {
 } from '../styledComponent/form'
 
 export function Form() {
-  const [input, setInput] = useState('')
-  const [user, setUser] = useState('')
-  const [gitHub, setGithub] = useState([])
+  const [input, setInput] = useState<string>('')
+  const [user, setUser] = useState<string>('')
+  const [gitHub, setGithub] = useState<string[]>([])
   //   const [github, setGithub] = useState({})
   function handleInputClick(event: ChangeEvent<HTMLInputElement>) {
     setInput(event.target.value)
@@ -29,9 +29,6 @@ export function Form() {
       axios
         .get(`https://api.github.com/users/${user}`)
         .then((response) => setGithub([response.data]))
-        .catch((e) => {
-          console.log(e)
-        })
     } catch (e) {
       console.log(e)
     }
@@ -57,14 +54,15 @@ export function Form() {
         </StyledDiv>
       </form>
       <div>
-        {gitHub.map((hub) => {
+        {gitHub.map((gitUser) => {
           return (
             <Card
-              img={hub.avatar_url}
-              name={hub.name}
-              location={hub.location}
-              login={hub.login}
-              bio={hub.bio}
+              img={gitUser.avatar_url}
+              name={gitUser.name}
+              location={gitUser.location}
+              login={gitUser.login}
+              bio={gitUser.bio}
+              key={1}
             />
           )
         })}

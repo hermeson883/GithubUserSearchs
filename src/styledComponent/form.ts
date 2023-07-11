@@ -25,7 +25,6 @@ export const StyledButton = styled.button`
   &:hover {
     color: ${(props) => props.theme.teal};
     background: ${(props) => props.theme.black};
-    border: none;
   }
 `
 export const StyledDivInputButton = styled.div`

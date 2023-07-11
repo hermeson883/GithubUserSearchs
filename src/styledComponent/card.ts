@@ -43,13 +43,13 @@ const COLORS = {
 } as const
 
 interface LiProps {
-  statusColor: keyof typeof COLORS
+  statuscolor: keyof typeof COLORS
 }
 
 export const StyledLi = styled.li<LiProps>`
   padding: 0.3rem;
   margin-top: 1rem;
-  background: ${(props) => props.theme[props.statusColor]};
+  background: ${(props) => props.theme[props.statuscolor]};
   color: ${(props) => props.theme.white};
   border-radius: 3px;
   text-align: center;
